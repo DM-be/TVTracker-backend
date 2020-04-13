@@ -1,4 +1,4 @@
-## Movietracker-backend 
+## TVTracker-backend 
 
 A backend server written in the NestJS framework to support the frontend movie/tvshow collection application. The server is responsible for communicating with [Sonarr](https://sonarr.tv/), [Radarr](https://radarr.video/) and a remote CouchDB ([PouchDB](https://pouchdb.com/)).
 
