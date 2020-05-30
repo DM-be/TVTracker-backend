@@ -1,8 +1,9 @@
+import { RadarrMovie } from 'src/interfaces/radarr/RadarrMovie';
+
 import {
     Injectable
 } from '@nestjs/common';
 import * as PouchDB from 'pouchdb-node';
-import { RadarrMovie } from 'src/interfaces/RadarrMovieDTO';
 import { PouchMovie } from 'src/interfaces/PouchMovie';
 import { RadarrService } from '../radarr/radarr.service';
 import { AddMovieDTO } from 'src/interfaces/AddMovieDTO';
@@ -131,9 +132,9 @@ export class PouchService {
 
     private async initializeMoviesCollection() {
         try {
-            const radarrMovieDtos = await this.radarrService.getRadarrMovieDtosInRadarrCollection();
-            const pouchMovies = await this.generatePouchMoviesWithImages(radarrMovieDtos);
-            await this.bulkAddPouchMoviesToCollection(pouchMovies);
+          //  const radarrMovieDtos = await this.radarrService.getRadarrMovieDtosInRadarrCollection();
+    //        const pouchMovies = await this.generatePouchMoviesWithImages(radarrMovieDtos);
+         //   await this.bulkAddPouchMoviesToCollection(pouchMovies);
         } catch (error) {
             console.log(error);
         }
@@ -206,8 +207,8 @@ export class PouchService {
             let movies: PouchMovie [] = [];
             for (let i = 0; i < radarrMovieDtos.length; i++) {
                 let movieInRadarrCollection = radarrMovieDtos[i];
-                const radarrMovieDtoWithRemoteImages = await this.radarrService.lookupRadarrMovie(movieInRadarrCollection.tmdbId);
-                movieInRadarrCollection.images = radarrMovieDtoWithRemoteImages.images;
+              //  const radarrMovieDtoWithRemoteImages = await this.radarrService.lookupRadarrMovie(movieInRadarrCollection.tmdbId);
+              //  movieInRadarrCollection.images = radarrMovieDtoWithRemoteImages.images;
                 let pouchMovie = new PouchMovie(movieInRadarrCollection);
                 movies.push(pouchMovie);
             }

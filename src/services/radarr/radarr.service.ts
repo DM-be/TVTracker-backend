@@ -7,8 +7,8 @@ import { AddOptions } from 'src/interfaces/AddOptions';
 
 @Injectable()
 export class RadarrService {
-    private BASE_URL = "http://192.168.0.245:7878/api/"
-    private API_KEY = "9365d415a25043ecbccad5b5c13d47ce";
+    private BASE_URL = "http://localhost:7878/api"
+    private API_KEY = "f3e45b5e5d95472f96f3289202c6b715";
 
     public async getMoviesFromRadarrDatabase(): Promise<RadarrMovie []> {
         try {
@@ -45,7 +45,7 @@ export class RadarrService {
             qualityProfileId,
             monitored,
             images,
-            path: `/data//movies/${radarrMovie.title} (${radarrMovie.year})`,
+            path: `C:\\movies\\${titleSlug}`, // TITLEslug for windows -- change to normal folder naming in linux
             title,
             titleSlug,
             tmdbId,
