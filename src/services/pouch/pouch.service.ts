@@ -2,7 +2,7 @@ import {
     Injectable
 } from '@nestjs/common';
 import * as PouchDB from 'pouchdb-node';
-import { RadarrMovieDTO } from 'src/interfaces/RadarrMovieDTO';
+import { RadarrMovie } from 'src/interfaces/RadarrMovieDTO';
 import { PouchMovie } from 'src/interfaces/PouchMovie';
 import { RadarrService } from '../radarr/radarr.service';
 import { AddMovieDTO } from 'src/interfaces/AddMovieDTO';
@@ -200,7 +200,7 @@ export class PouchService {
 
     }
 
-    public async generatePouchMoviesWithImages(radarrMovieDtos: RadarrMovieDTO []): Promise<PouchMovie []>
+    public async generatePouchMoviesWithImages(radarrMovieDtos: RadarrMovie []): Promise<PouchMovie []>
     {
         try {
             let movies: PouchMovie [] = [];

@@ -2,11 +2,11 @@ import { Controller, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { AddMovieDTO } from 'src/interfaces/AddMovieDTO';
 import { MovieService } from 'src/services/movie/movie.service';
 import { AddMovieToCollectionDTO } from 'src/interfaces/AddMovieToCollectionDTO';
-import { UpdateMovieDTO } from 'src/interfaces/UpdateMovieDTO';
-import { GrabbedRadarrMovieDTO } from 'src/interfaces/GrabbedRadarrMovieDTO';
+import { UpdateMovieDTO } from 'src/interfaces/radarr/UpdateMovieDTO';
+import { GrabbedRadarrMovieDTO } from 'src/interfaces/radarr/GrabbedRadarrMovieDTO';
 import { DeleteMovieDTO } from 'src/interfaces/DeleteMovieDTO';
 import { async } from 'rxjs/internal/scheduler/async';
-import { DownloadedRadarrMovieDTO } from 'src/interfaces/DownloadedRadarrMovieDTO';
+import { DownloadedRadarrMovieDTO } from 'src/interfaces/radarr/DownloadedRadarrMovieDTO';
 
 @Controller('movies')
 export class MoviesController {

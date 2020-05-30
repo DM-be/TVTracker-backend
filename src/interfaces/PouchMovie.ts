@@ -1,4 +1,4 @@
-import { RadarrMovieDTO } from "./RadarrMovieDTO";
+import { RadarrMovie } from "./RadarrMovieDTO";
 import { Image } from "./Image";
 
 
@@ -16,7 +16,7 @@ export class PouchMovie {
     grabbed?: boolean; // gets set by the webhook
 
 
-    constructor(movie: RadarrMovieDTO) {
+    constructor(movie: RadarrMovie) {
         this.title = movie.title;
         this.overview = movie.overview;
         this.downloaded = movie.downloaded;

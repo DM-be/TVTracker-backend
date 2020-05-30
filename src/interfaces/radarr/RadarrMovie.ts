@@ -1,7 +1,8 @@
-import { Image } from "./Image";
+import { AddOptions } from 'src/interfaces/AddOptions';
+import { Image } from "../Image";
 
 
-export interface RadarrMovieDTO {
+export interface RadarrMovie {
     title: string;
     sortTitle: string;
     sizeOnDisk: number;
@@ -36,5 +37,7 @@ export interface RadarrMovieDTO {
     qualityProfileId: number;
     id: number,
     rootFolderPath?: string;
+
+    addOptions?: AddOptions;
 }
 

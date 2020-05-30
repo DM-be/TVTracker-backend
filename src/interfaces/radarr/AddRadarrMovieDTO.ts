@@ -1,5 +1,5 @@
-import { AddOptions } from "./AddOptions";
-import { Image } from "./Image";
+import { AddOptions } from "../AddOptions";
+import { Image } from "../Image";
 
 
 export interface AddRadarrMovieDTO {

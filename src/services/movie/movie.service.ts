@@ -4,11 +4,11 @@ import { RadarrService } from '../radarr/radarr.service';
 import { AddMovieDTO } from 'src/interfaces/AddMovieDTO';
 import { PouchMovie } from 'src/interfaces/PouchMovie';
 import { AddMovieToCollectionDTO } from 'src/interfaces/AddMovieToCollectionDTO';
-import { UpdateMovieDTO } from 'src/interfaces/UpdateMovieDTO';
-import { RadarrMovieDTO } from 'src/interfaces/RadarrMovieDTO';
+import { UpdateMovieDTO } from 'src/interfaces/radarr/UpdateMovieDTO';
+import { RadarrMovie } from 'src/interfaces/RadarrMovieDTO';
 import { PouchMovieDTO } from 'src/interfaces/PouchMovieDTO';
 import { DeleteMovieDTO } from 'src/interfaces/DeleteMovieDTO';
-import { GrabbedRadarrMovieDTO } from 'src/interfaces/GrabbedRadarrMovieDTO';
+import { GrabbedRadarrMovieDTO } from 'src/interfaces/radarr/GrabbedRadarrMovieDTO';
 
 @Injectable()
 export class MovieService {
@@ -21,7 +21,7 @@ export class MovieService {
 
         try {
             const radarrMovie = await this.radarrService.lookupRadarrMovie(addMovieDto.tmdbId);
-            const radarrId = await this.radarrService.addRadarrMovie(radarrMovie, addMovieDto.addOptions, addMovieDto.qualityProfileId, addMovieDto.monitored);
+            const radarrId = await this.radarrService.addRadarrMovie(radarrMovie);
             radarrMovie.id = radarrId;
             await this.pouchService.addPouchMovieToCollection(new PouchMovie(radarrMovie));
             } catch (error) {
@@ -94,7 +94,7 @@ export class MovieService {
             const pouchMovieDtos = await this.pouchService.getAllPouchMovieDtosInCollection();
             const addedRadarrMovies = await this.getAddedMoviesNotYetAddedInPouch(radarrMovieDtos, pouchMovieDtos);
             const deletedRadarrMovies = await this.getDeletedMoviesNotYetDeletedInPouch(radarrMovieDtos,pouchMovieDtos);
-            addedRadarrMovies.forEach(async (radarrMovieDto: RadarrMovieDTO) => {
+            addedRadarrMovies.forEach(async (radarrMovieDto: RadarrMovie) => {
                 const addMovieToCollectionDto: AddMovieToCollectionDTO = {
                     radarrId: radarrMovieDto.id,
                     tmdbId: radarrMovieDto.tmdbId
@@ -111,12 +111,12 @@ export class MovieService {
 
     }
 
-    private getAddedMoviesNotYetAddedInPouch(radarrMovieDtos: RadarrMovieDTO [], pouchMovieDtos: PouchMovieDTO []): RadarrMovieDTO [] {
+    private getAddedMoviesNotYetAddedInPouch(radarrMovieDtos: RadarrMovie [], pouchMovieDtos: PouchMovieDTO []): RadarrMovie [] {
         return radarrMovieDtos.filter(({ tmdbId: id1 }) => !pouchMovieDtos.some(({ tmdbId: id2 }) => id2 === id1));
        
     }
 
-    private getDeletedMoviesNotYetDeletedInPouch(radarrMovieDtos: RadarrMovieDTO [], pouchMovieDtos: PouchMovieDTO []): PouchMovieDTO [] {
+    private getDeletedMoviesNotYetDeletedInPouch(radarrMovieDtos: RadarrMovie [], pouchMovieDtos: PouchMovieDTO []): PouchMovieDTO [] {
         return pouchMovieDtos.filter(({ tmdbId: id1 }) => !radarrMovieDtos.some(({ tmdbId: id2 }) => id2 === id1));
 
     }
