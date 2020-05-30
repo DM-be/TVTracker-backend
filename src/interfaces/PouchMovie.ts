@@ -1,4 +1,5 @@
-import { RadarrMovie } from "./RadarrMovieDTO";
+import { RadarrMovie } from 'src/interfaces/radarr/RadarrMovie';
+
 import { Image } from "./Image";
 
 
