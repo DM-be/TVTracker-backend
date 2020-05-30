@@ -48,7 +48,7 @@ export class MoviesController {
     async syncRadarrMoviesWithPouchMovies() {
         try {
             console.log("in cron");
-            await this.movieService.syncRadarrMoviesWithPouchMovies();
+          //  await this.movieService.syncRadarrMoviesWithPouchMovies();
         } catch (error) {
             console.log("could not execute cronjob fully");
             console.log(error);
@@ -64,7 +64,7 @@ export class MoviesController {
         // B not in pouchdb yet --> we manually added via web ui in radarr, push new pouchmovie with grabbed property
 
         try {
-            await this.movieService.handleGrabbedMovie(grabbedRadarrMovieDto);
+        //    await this.movieService.handleGrabbedMovie(grabbedRadarrMovieDto);
         } catch (error) {
             console.log("could not execute handlegrabbed movie");
             console.log(error);
@@ -81,7 +81,7 @@ export class MoviesController {
                 radarrId : downloadedRadarrMovieDto.movie.id,
                 tmdbId: downloadedRadarrMovieDto.remoteMovie.tmdbId
             }
-            await this.movieService.updateMovie(updateMovieDto);
+         //   await this.movieService.updateMovie(updateMovieDto);
             
         } catch (error) {
             console.log("could not update downloaded movie");
@@ -126,7 +126,7 @@ export class MoviesController {
     async updateInRadarrAndCollection(@Body() updateMovieDto: UpdateMovieDTO)
     {
         try {
-            await this.movieService.updateMovie(updateMovieDto);
+           // await this.movieService.updateMovie(updateMovieDto);
         } catch (error) {
             console.log("could not update " + error);
         }

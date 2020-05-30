@@ -3,6 +3,13 @@ import { Image } from "../Image";
 
 
 export interface RadarrMovie {
+
+    _rev?: string;
+    _id?: string;
+    _deleted?: string;
+    grabbed?: boolean;
+    addOptions?: AddOptions;
+
     title: string;
     sortTitle: string;
     sizeOnDisk: number;
@@ -33,11 +40,11 @@ export interface RadarrMovie {
         votes: number;
         value: number;
     }
-    alternativeTitles: string []
+    alternativeTitles: string [];
     qualityProfileId: number;
-    id: number,
+    id: number;
     rootFolderPath?: string;
 
-    addOptions?: AddOptions;
+
 }
 
